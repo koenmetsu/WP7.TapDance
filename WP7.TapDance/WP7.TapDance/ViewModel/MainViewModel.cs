@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -150,7 +151,16 @@ namespace WP7.TapDance.ViewModel
             SetAllButtons("You won!", Colors.Blue);
             // this could probably be better ( observablecollection is of no use here )
             scoreStorage.AddScore(eventArgs.NewScore);
-            HighScores = new ObservableCollection<Score>(scoreStorage.GetScores());
+            RefreshHighScores();
+        }
+
+        private void RefreshHighScores()
+        {
+            HighScores.Clear();
+            foreach (var highScore in scoreStorage.GetScores())
+            {
+                HighScores.Add(highScore);
+            }
         }
 
         private void GameOnPlayerLost(object sender, EventArgs eventArgs)
