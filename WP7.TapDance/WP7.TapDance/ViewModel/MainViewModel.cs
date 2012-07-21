@@ -23,7 +23,7 @@ namespace WP7.TapDance.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly TimeSpan buttonLightingTime = TimeSpan.FromMilliseconds(700);
+        private readonly TimeSpan buttonLightingTime = TimeSpan.FromMilliseconds(200);
         private readonly int[] pattern;
         private readonly DispatcherTimer patternTimer;
         private int currentButtonInPattern;
@@ -45,9 +45,7 @@ namespace WP7.TapDance.ViewModel
             patternTimer = new DispatcherTimer();
             patternTimer.Tick += PatternTimerOnTick;
             patternTimer.Interval = buttonLightingTime;
-            pattern = new int[4] {0, 2, 3, 1}; //game.GetNewPattern();
-            currentButtonInPattern = 0;
-            patternTimer.Start();
+            pattern = new int[6] { 0, 2, 3, 1, 1, 2 }; //game.GetNewPattern();
 
             //Button1Command = new RelayCommand(() => game.ButtonClicked(0), () => game.ButtonsCanBeClicked);
             //Button2Command = new RelayCommand(() => game.ButtonClicked(1), () => game.ButtonsCanBeClicked);
@@ -59,7 +57,13 @@ namespace WP7.TapDance.ViewModel
             Button2BackColor = new SolidColorBrush(Colors.Black);
             Button3BackColor = new SolidColorBrush(Colors.Black);
             Button4BackColor = new SolidColorBrush(Colors.Black);
-            //RetryCommand = new RelayCommand(() => LightPattern(new int[] {0, 2, 3, 1}), () => true);
+            RetryCommand = new RelayCommand(() => StartNewPattern(pattern), () => true);// should be replaced by game.GetNewPattern
+        }
+
+        public void StartNewPattern(int[] pattern)
+        {
+            currentButtonInPattern = 0;
+            Scheduler.Dispatcher.Schedule(() => patternTimer.Start(), buttonLightingTime);
         }
 
         public RelayCommand Button1Command { get; set; }
@@ -76,7 +80,7 @@ namespace WP7.TapDance.ViewModel
         private void PatternTimerOnTick(object sender, EventArgs eventArgs)
         {
             LightPattern(pattern[currentButtonInPattern++]);
-            if (currentButtonInPattern == 4)
+            if (currentButtonInPattern == pattern.Count())
             {
                 patternTimer.Stop();
             }
@@ -104,7 +108,7 @@ namespace WP7.TapDance.ViewModel
         public void LightButton(SolidColorBrush brush)
         {
             brush.Color = Colors.Orange;
-            Scheduler.Dispatcher.Schedule(() => brush.Color = Colors.Black, buttonLightingTime);
+            Scheduler.Dispatcher.Schedule(() => brush.Color = Colors.Black, buttonLightingTime.Add(TimeSpan.FromMilliseconds(-100)));
         }
     }
 }
