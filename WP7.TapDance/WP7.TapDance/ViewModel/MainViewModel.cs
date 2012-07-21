@@ -175,7 +175,11 @@ namespace WP7.TapDance.ViewModel
         public void SetAllButtons(string text, Color backColor)
         {
             SetAllButtons(text);
+            SetAllButtonsBackColors(backColor);
+        }
 
+        public void SetAllButtonsBackColors(Color backColor)
+        {
             Button1BackColor.Color = backColor;
             Button2BackColor.Color = backColor;
             Button3BackColor.Color = backColor;
@@ -193,6 +197,8 @@ namespace WP7.TapDance.ViewModel
         public void StartNewPattern(int[] newPattern)
         {
             StartRetryText = "Retry";
+            SetAllButtonsBackColors(Colors.Black);
+            SetNumberButtonsToDefault();
             pattern = newPattern;
             currentButtonInPattern = 0;
             Scheduler.Dispatcher.Schedule(() => patternTimer.Start(), buttonLightingTime);
