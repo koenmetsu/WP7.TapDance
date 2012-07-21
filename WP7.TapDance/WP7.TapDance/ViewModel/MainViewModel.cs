@@ -127,7 +127,7 @@ namespace WP7.TapDance.ViewModel
 
         private void GameOnTapDanceStarted(object sender, EventArgs eventArgs)
         {
-            SetNumberButtonsToDefault();
+            SetAllButtons("Go!");
         }
 
         private void GameOnWaitForItStarted(object sender, EventArgs eventArgs)
@@ -165,7 +165,7 @@ namespace WP7.TapDance.ViewModel
 
         private void GameOnPlayerLost(object sender, EventArgs eventArgs)
         {
-            SetAllButtons("You lost.", Colors.Red);
+            SetAllButtons("Wrong combination...", Colors.Red);
         }
 
         private void GameOnPlayerTooFast(object sender, EventArgs eventArgs)
