@@ -104,17 +104,18 @@ namespace WP7.TapDance.Model
         {
             if(tapDanceWatch.IsRunning)
             {
+<<<<<<< HEAD
                 tappedButtons.Add(button);
                 if (tappedButtons.Count.Equals(generatedPattern.Length))
                 {
                     ButtonsCanBeClicked = false;
-                    if (CheckPattern(tappedButtons.ToArray()))
-					{
-						var score = new Score(tapDanceWatch.Elapsed.TotalSeconds, DateTime.Now);
-						PlayerWon(this, new GameWonEventArgs(score));
-					}
+                    if (CheckPattern(tappedButtons.ToArray())) PlayerWon(this, new EventArgs());
                     else PlayerLost(this, new EventArgs());
                 }
+=======
+                var score = new Score(clickFastWatch.Elapsed.TotalSeconds, DateTime.Now);
+                PlayerWon(this, new GameWonEventArgs(score));
+>>>>>>> bd8dd6584d36b4085e2e5fc2d9bcd6f50da6f028
             }
             else
             {

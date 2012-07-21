@@ -116,6 +116,9 @@ namespace WP7.TapDance.ViewModel
             SetNumberButtonsToDefault();
         }
 
+<<<<<<< HEAD
+        private void GameOnTapDanceStarted(object sender, EventArgs eventArgs)
+=======
         private ObservableCollection<Score> m_highScores;
         public ObservableCollection<Score> HighScores
         {
@@ -123,7 +126,8 @@ namespace WP7.TapDance.ViewModel
             private set { m_highScores = value; }
         }
 
-        private void GameOnTapDanceStarted(object sender, EventArgs eventArgs)
+        private void GameOnClickFastStarted(object sender, EventArgs eventArgs)
+>>>>>>> bd8dd6584d36b4085e2e5fc2d9bcd6f50da6f028
         {
             SetNumberButtonsToDefault();
         }
