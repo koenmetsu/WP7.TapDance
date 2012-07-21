@@ -85,6 +85,7 @@
     <Compile Include="Model\CountdownEventArgs.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\IGame.cs" />
+    <Compile Include="Model\PatternGenerator.cs" />
     <Compile Include="Model\Score.cs" />
     <Compile Include="Model\ScoreStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

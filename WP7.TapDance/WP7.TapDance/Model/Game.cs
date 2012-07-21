@@ -46,7 +46,7 @@ namespace WP7.TapDance.Model
 
         public int[] GetNewPattern()
         {
-            return new[] { 1, 0, 2, 3 };
+            return PatternGenerator.Generate(0, 3, 6);
         }
 
         public double GetSecondsPassed()
