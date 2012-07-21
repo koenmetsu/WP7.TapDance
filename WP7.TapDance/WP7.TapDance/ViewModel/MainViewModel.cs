@@ -33,19 +33,11 @@ namespace WP7.TapDance.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
-            IGame game = null;
+            IGame game = new Game();
             patternTimer = new DispatcherTimer();
             patternTimer.Tick += PatternTimerOnTick;
             patternTimer.Interval = buttonLightingTime;
-            pattern = new int[6] { 0, 2, 3, 1, 1, 2 }; //game.GetNewPattern();
+            pattern = game.GetNewPattern();
 
             //Button1Command = new RelayCommand(() => game.ButtonClicked(0), () => game.ButtonsCanBeClicked);
             //Button2Command = new RelayCommand(() => game.ButtonClicked(1), () => game.ButtonsCanBeClicked);
