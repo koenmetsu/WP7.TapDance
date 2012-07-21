@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Media;
 using Microsoft.Phone.Reactive;
+using WP7.TapDance.Model;
 
 namespace WP7.TapDance.ViewModel
 {
@@ -34,13 +35,13 @@ namespace WP7.TapDance.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
-            var game = new ObservableObject();
+            IGame game = null;
 
 
-            //Button1Command = new RelayCommand(game.Button1Clicked, () => game.CanBeClicked);
-            //Button2Command = new RelayCommand(game.Button2Clicked, () => game.CanBeClicked);
-            //Button3Command = new RelayCommand(game.Button3Clicked, () => game.CanBeClicked);
-            //Button4Command = new RelayCommand(game.Button4Clicked, () => game.CanBeClicked);
+            Button1Command = new RelayCommand(() => game.ButtonClicked(0), () => game.ButtonsCanBeClicked);
+            Button2Command = new RelayCommand(() => game.ButtonClicked(1), () => game.ButtonsCanBeClicked);
+            Button3Command = new RelayCommand(() => game.ButtonClicked(2), () => game.ButtonsCanBeClicked);
+            Button4Command = new RelayCommand(() => game.ButtonClicked(3), () => game.ButtonsCanBeClicked);
             //RetryCommand = new RelayCommand(game.Retry, () => true);
 
             Button1BackColor = new SolidColorBrush(Colors.Black);
