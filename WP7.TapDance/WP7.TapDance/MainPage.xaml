@@ -18,9 +18,9 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="MY APPLICATION">
+        <controls:Pivot Title="TAPDANCE">
             <!--Pivot item one-->
-            <controls:PivotItem Header="first">
+            <controls:PivotItem Header="play">
                 <!--Double line list with text wrapping-->
                 <ListBox x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
@@ -35,7 +35,7 @@
             </controls:PivotItem>
  
             <!--Pivot item two-->
-            <controls:PivotItem Header="second"> 
+            <controls:PivotItem Header="high scores"> 
                 <!--Triple line list no text wrapping-->
                     <ListBox x:Name="SecondListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                         <ListBox.ItemTemplate>
