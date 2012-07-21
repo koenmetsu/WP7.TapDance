@@ -21,5 +21,15 @@ namespace WP7.TapDance.Model
         {
             return clickedWatch.Elapsed.TotalSeconds;
         }
+
+        public void ButtonClicked(int button)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ButtonsCanBeClicked
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }
