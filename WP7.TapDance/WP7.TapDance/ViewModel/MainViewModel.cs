@@ -92,7 +92,7 @@ namespace WP7.TapDance.ViewModel
             game.PlayerWon += GameOnPlayerWon;
             game.CountdownTick += GameOnCountdownTick;
             game.WaitForItStarted += GameOnWaitForItStarted;
-            game.ClickFastStarted += GameOnClickFastStarted;
+            game.TapDanceStarted += GameOnTapDanceStarted;
 
             patternTimer = new DispatcherTimer();
             patternTimer.Tick += PatternTimerOnTick;
@@ -112,9 +112,9 @@ namespace WP7.TapDance.ViewModel
             SetNumberButtonsToDefault();
         }
 
-        private void GameOnClickFastStarted(object sender, EventArgs eventArgs)
+        private void GameOnTapDanceStarted(object sender, EventArgs eventArgs)
         {
-            throw new NotImplementedException();
+            SetNumberButtonsToDefault();
         }
 
         private void GameOnWaitForItStarted(object sender, EventArgs eventArgs)
