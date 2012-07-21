@@ -33,11 +33,14 @@ namespace WP7.TapDance.Model
 
         private void CountdownTimerOnTick(object sender, EventArgs eventArgs)
         {
-            CountdownTick(this, new CountdownEventArgs(countdown--));
             if(countdown == 0)
             {
                 countdownTimer.Stop();
-                WaitForItStarted(this, new EventArgs());
+                WaitForItStarted(this, new EventArgs());   
+            }
+            else
+            {
+                CountdownTick(this, new CountdownEventArgs(countdown--));    
             }
         }
 
