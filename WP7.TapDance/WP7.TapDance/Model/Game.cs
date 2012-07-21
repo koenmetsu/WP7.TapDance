@@ -42,6 +42,7 @@ namespace WP7.TapDance.Model
         {
             if(countdown == 0)
             {
+                ButtonsCanBeClicked = true;
                 countdownTimer.Stop();
                 WaitForItStarted(this, new EventArgs());
                 Scheduler.Dispatcher.Schedule(StartTimer, TimeSpan.FromSeconds(new Random().Next(2, 5)));
@@ -65,6 +66,7 @@ namespace WP7.TapDance.Model
 
         public int[] GetNewPattern()
         {
+            ButtonsCanBeClicked = false;
             ResetTappedButtons();
             generatedPattern = PatternGenerator.Generate(0, 3, 6);
             return generatedPattern;
@@ -108,18 +110,26 @@ namespace WP7.TapDance.Model
                 if (tappedButtons.Count.Equals(generatedPattern.Length))
                 {
                     ButtonsCanBeClicked = false;
+                    tapDanceWatch.Stop();
                     if (CheckPattern(tappedButtons.ToArray()))
-					{
+                    {
 						var score = new Score(tapDanceWatch.Elapsed.TotalSeconds, DateTime.Now);
 						PlayerWon(this, new GameWonEventArgs(score));
 					}
-                    else PlayerLost(this, new EventArgs());
+                    else
+                    {
+                        PlayerLost(this, new EventArgs());
+                    }
                 }
             }
             else
             {
+                ButtonsCanBeClicked = false;
                 PlayerTooFast(this, new EventArgs());
-                if (countdownTimer.IsEnabled) countdownTimer.Stop();
+                if (countdownTimer.IsEnabled)
+                {
+                    countdownTimer.Stop();
+                }
             }
         }
     }
