@@ -20,6 +20,68 @@ namespace WP7.TapDance.ViewModel
         private int currentButtonInPattern;
         private IGame game;
 
+        public RelayCommand Button1Command { get; set; }
+        public RelayCommand Button2Command { get; set; }
+        public RelayCommand Button3Command { get; set; }
+        public RelayCommand Button4Command { get; set; }
+        public RelayCommand StartRetryCommand { get; set; }
+
+        private string m_startRetryText;
+        public string StartRetryText
+        {
+            get { return m_startRetryText; }
+            set { m_startRetryText = value; RaisePropertyChanged(() => StartRetryText); }
+        }
+
+        public SolidColorBrush Button1BackColor { get; set; }
+        public SolidColorBrush Button2BackColor { get; set; }
+        public SolidColorBrush Button3BackColor { get; set; }
+        public SolidColorBrush Button4BackColor { get; set; }
+
+        private string m_button1Text;
+        public string Button1Text
+        {
+            get { return m_button1Text; }
+            set
+            {
+                m_button1Text = value;
+                RaisePropertyChanged(() => Button1Text);
+            }
+        }
+
+        private string m_button2Text;
+        public string Button2Text
+        {
+            get { return m_button2Text; }
+            set
+            {
+                m_button2Text = value;
+                RaisePropertyChanged(() => Button2Text);
+            }
+        }
+
+        private string m_button3Text;
+        public string Button3Text
+        {
+            get { return m_button3Text; }
+            set
+            {
+                m_button3Text = value;
+                RaisePropertyChanged(() => Button3Text);
+            }
+        }
+
+        private string m_button4Text;
+        public string Button4Text
+        {
+            get { return m_button4Text; }
+            set
+            {
+                m_button4Text = value;
+                RaisePropertyChanged(() => Button4Text);
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -113,59 +175,6 @@ namespace WP7.TapDance.ViewModel
             pattern = newPattern;
             currentButtonInPattern = 0;
             Scheduler.Dispatcher.Schedule(() => patternTimer.Start(), buttonLightingTime);
-        }
-
-        public RelayCommand Button1Command { get; set; }
-        public RelayCommand Button2Command { get; set; }
-        public RelayCommand Button3Command { get; set; }
-        public RelayCommand Button4Command { get; set; }
-        public RelayCommand StartRetryCommand { get; set; }
-
-        private string m_startRetryText;
-        public string StartRetryText
-        {
-            get { return m_startRetryText; }
-            set { m_startRetryText = value; RaisePropertyChanged(() => StartRetryText);}
-        }
-
-        public SolidColorBrush Button1BackColor { get; set; }
-        public SolidColorBrush Button2BackColor { get; set; }
-        public SolidColorBrush Button3BackColor { get; set; }
-        public SolidColorBrush Button4BackColor { get; set; }
-
-        private string m_button1Text;
-        public string Button1Text
-        {
-            get { return m_button1Text; }
-            set { m_button1Text = value;
-            RaisePropertyChanged(() => Button1Text);}
-        }
-
-        private string m_button2Text;
-        public string Button2Text
-        {
-            get { return m_button2Text; }
-            set { m_button2Text = value;
-                RaisePropertyChanged(() => Button2Text);
-            }
-        }
-
-        private string m_button3Text;
-        public string Button3Text
-        {
-            get { return m_button3Text; }
-            set { m_button3Text = value;
-                RaisePropertyChanged(() => Button3Text);
-            }
-        }
-
-        private string m_button4Text;
-        public string Button4Text
-        {
-            get { return m_button4Text; }
-            set { m_button4Text = value;
-                RaisePropertyChanged(() => Button4Text);
-            }
         }
 
         private void PatternTimerOnTick(object sender, EventArgs eventArgs)
