@@ -82,6 +82,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CountdownEventArgs.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\IGame.cs" />
     <Compile Include="Model\Score.cs" />

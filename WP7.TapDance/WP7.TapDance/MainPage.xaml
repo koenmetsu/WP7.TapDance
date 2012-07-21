@@ -34,11 +34,11 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Button Content="1" Command="{Binding Button1Command}" Background="{Binding Button1BackColor}" Grid.Row="0" Grid.Column="0"></Button>
-            <Button Content="2" Command="{Binding Button2Command}" Background="{Binding Button2BackColor}" Grid.Row="0" Grid.Column="1"></Button>
-            <Button Content="3" Command="{Binding Button3Command}" Background="{Binding Button3BackColor}" Grid.Row="1" Grid.Column="0"></Button>
-            <Button Content="4" Command="{Binding Button4Command}" Background="{Binding Button4BackColor}" Grid.Row="1" Grid.Column="1"></Button>
-            <Button Content="Retry" Command="{Binding RetryCommand}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Button>
+            <Button Content="{Binding Button1Text}" Command="{Binding Button1Command}" Background="{Binding Button1BackColor}" Grid.Row="0" Grid.Column="0"></Button>
+            <Button Content="{Binding Button2Text}" Command="{Binding Button2Command}" Background="{Binding Button2BackColor}" Grid.Row="0" Grid.Column="1"></Button>
+            <Button Content="{Binding Button3Text}" Command="{Binding Button3Command}" Background="{Binding Button3BackColor}" Grid.Row="1" Grid.Column="0"></Button>
+            <Button Content="{Binding Button4Text}" Command="{Binding Button4Command}" Background="{Binding Button4BackColor}" Grid.Row="1" Grid.Column="1"></Button>
+            <Button Content="{Binding StartRetryText}" Command="{Binding StartRetryCommand}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Button>
         </Grid>
       </controls:PivotItem>
  

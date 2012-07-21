@@ -1,35 +1,71 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace WP7.TapDance.Model
 {
     public class Game : IGame
     {
-        private readonly Stopwatch clickedWatch;
+        private readonly Stopwatch clickFastWatch;
+        private readonly DispatcherTimer countdownTimer;
+        private int countdown;
+
+        public event EventHandler Stopped;
+        public event EventHandler PlayerLost;
+        public event EventHandler PlayerWon;
+        public event EventHandler<CountdownEventArgs> CountdownTick;
+        public event EventHandler WaitForItStarted;
+        public event EventHandler ClickFastStarted;
 
         public Game()
         {
-            clickedWatch = new Stopwatch();
+            clickFastWatch = new Stopwatch();
+            countdownTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.7) };
+        }
+
+        public void StartCountdown()
+        {
+            countdown = 3;
+            countdownTimer.Tick -= CountdownTimerOnTick;
+            countdownTimer.Tick += CountdownTimerOnTick;
+            countdownTimer.Start();
+        }
+
+        private void CountdownTimerOnTick(object sender, EventArgs eventArgs)
+        {
+            CountdownTick(this, new CountdownEventArgs(countdown--));
+            if(countdown == 0)
+            {
+                countdownTimer.Stop();
+                WaitForItStarted(this, new EventArgs());
+            }
         }
 
         public int[] GetNewPattern()
         {
-            return new int[] { 1, 0, 2, 3 };
+            return new[] { 1, 0, 2, 3 };
         }
 
         public double GetSecondsPassed()
         {
-            return clickedWatch.Elapsed.TotalSeconds;
+            return clickFastWatch.Elapsed.TotalSeconds;
         }
 
         public void ButtonClicked(int button)
         {
-            throw new NotImplementedException();
+            if(clickFastWatch.IsRunning)
+            {
+                PlayerWon(this, new EventArgs());
+            }
+            else
+            {
+                PlayerLost(this, new EventArgs());
+            }
         }
 
         public bool ButtonsCanBeClicked
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
     }
 }
