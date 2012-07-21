@@ -26,19 +26,22 @@
     <controls:Pivot Title="TAPDANCE">
       <!--Pivot item one-->
       <controls:PivotItem Header="play">
-        <StackPanel Orientation="Vertical">
-          <StackPanel Orientation="Horizontal">
-            <Button Content="1" Command="{Binding Button1Command}" Background="{Binding Button1BackColor}"></Button>
-            <Button Content="2" Command="{Binding Button2Command}" Background="{Binding Button2BackColor}"></Button>
-          </StackPanel>
-          <StackPanel Orientation="Horizontal">
-            <Button Content="3" Command="{Binding Button3Command}" Background="{Binding Button3BackColor}"></Button>
-            <Button Content="4" Command="{Binding Button4Command}" Background="{Binding Button4BackColor}"></Button>
-          </StackPanel>
-          <StackPanel Orientation="Horizontal">
-            <Button Content="Retry" Command="{Binding RetryCommand}"></Button>
-          </StackPanel>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Button Content="1" Command="{Binding Button1Command}" Background="{Binding Button1BackColor}" Grid.Row="0" Grid.Column="0"></Button>
+            <Button Content="2" Command="{Binding Button2Command}" Background="{Binding Button2BackColor}" Grid.Row="0" Grid.Column="1"></Button>
+            <Button Content="3" Command="{Binding Button3Command}" Background="{Binding Button3BackColor}" Grid.Row="1" Grid.Column="0"></Button>
+            <Button Content="4" Command="{Binding Button4Command}" Background="{Binding Button4BackColor}" Grid.Row="1" Grid.Column="1"></Button>
+            <Button Content="Retry" Command="{Binding RetryCommand}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Button>
+        </Grid>
       </controls:PivotItem>
  
       <!--Pivot item two-->
