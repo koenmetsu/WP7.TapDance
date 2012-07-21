@@ -93,6 +93,7 @@ namespace WP7.TapDance.ViewModel
             HighScores = new ObservableCollection<Score>(scoreStorage.GetScores());
             game = new Game();
             game.PlayerLost += GameOnPlayerLost;
+            game.PlayerTooFast += GameOnPlayerTooFast;
             game.PlayerWon += GameOnPlayerWon;
             game.CountdownTick += GameOnCountdownTick;
             game.WaitForItStarted += GameOnWaitForItStarted;
@@ -154,7 +155,13 @@ namespace WP7.TapDance.ViewModel
 
         private void GameOnPlayerLost(object sender, EventArgs eventArgs)
         {
+            SetAllButtons("You lost.", Colors.Red);
+        }
+
+        private void GameOnPlayerTooFast(object sender, EventArgs eventArgs)
+        {
             SetAllButtons("Aaaah, too fast!", Colors.Red);
+            if (patternTimer.IsEnabled) patternTimer.Stop();
         }
 
         public void SetAllButtons(string text)

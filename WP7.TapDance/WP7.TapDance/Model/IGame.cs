@@ -4,8 +4,8 @@ namespace WP7.TapDance.Model
 {
     public interface IGame
     {
-        event EventHandler Stopped;
         event EventHandler PlayerLost;
+        event EventHandler PlayerTooFast;
         event EventHandler<GameWonEventArgs> PlayerWon;
         event EventHandler<CountdownEventArgs> CountdownTick;
         event EventHandler WaitForItStarted;

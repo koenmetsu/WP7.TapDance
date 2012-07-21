@@ -14,8 +14,8 @@ namespace WP7.TapDance.Model
         private int[] generatedPattern;
         private List<int> tappedButtons;
 
-        public event EventHandler Stopped;
         public event EventHandler PlayerLost;
+        public event EventHandler PlayerTooFast;
         public event EventHandler<GameWonEventArgs> PlayerWon;
         public event EventHandler<CountdownEventArgs> CountdownTick;
         public event EventHandler WaitForItStarted;
@@ -118,7 +118,8 @@ namespace WP7.TapDance.Model
             }
             else
             {
-                PlayerLost(this, new EventArgs());
+                PlayerTooFast(this, new EventArgs());
+                if (countdownTimer.IsEnabled) countdownTimer.Stop();
             }
         }
     }
