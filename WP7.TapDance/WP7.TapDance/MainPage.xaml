@@ -45,18 +45,22 @@
       <!--Pivot item two-->
       <controls:PivotItem Header="high scores"> 
         <!--Triple line list no text wrapping-->
-        <ListBox x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
-          <ListBox.ItemTemplate>
-            <DataTemplate>
-              <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                <TextBlock Text="Test" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" />
-                <TextBlock Text="Test" TextWrapping="Wrap" Margin="12,-6,12,0"
-                           Style="{StaticResource PhoneTextSubtleStyle}" />
-              </StackPanel>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
-        </ListBox>
-      </controls:PivotItem>
+                <ListBox Name="HighScoresListBox" ItemsSource="{Binding HighScores}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical"  Margin="0 0 0 10" >
+                                <TextBlock Text="{Binding Seconds, Mode=OneWay}" FontSize="48" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Date, Mode=OneWay}" FontSize="26" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PivotItem>
     </controls:Pivot>
   </Grid>
  

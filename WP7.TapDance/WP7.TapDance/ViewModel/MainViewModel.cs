@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 using WP7.TapDance.Model;
+using System.Collections.ObjectModel;
 
 namespace WP7.TapDance.ViewModel
 {
@@ -19,12 +20,15 @@ namespace WP7.TapDance.ViewModel
         private readonly DispatcherTimer patternTimer;
         private int currentButtonInPattern;
         private IGame game;
+        private ScoreStorage scoreStorage;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
+            scoreStorage = new ScoreStorage();
+            HighScores = new ObservableCollection<Score>(scoreStorage.GetScores());
             game = new Game();
             game.PlayerLost += GameOnPlayerLost;
             game.PlayerWon += GameOnPlayerWon;
@@ -50,6 +54,13 @@ namespace WP7.TapDance.ViewModel
             SetNumberButtonsToDefault();
         }
 
+        private ObservableCollection<Score> m_highScores;
+        public ObservableCollection<Score> HighScores
+        {
+            get { return m_highScores; }
+            private set { m_highScores = value; }
+        }
+
         private void GameOnClickFastStarted(object sender, EventArgs eventArgs)
         {
             throw new NotImplementedException();
@@ -71,9 +82,12 @@ namespace WP7.TapDance.ViewModel
             LightButton(Button4BackColor, color);
         }
 
-        private void GameOnPlayerWon(object sender, EventArgs eventArgs)
+        private void GameOnPlayerWon(object sender, GameWonEventArgs eventArgs)
         {
             SetAllButtons("You won!", Colors.Blue);
+            // this could probably be better ( observablecollection is of no use here )
+            scoreStorage.AddScore(eventArgs.NewScore);
+            HighScores = new ObservableCollection<Score>(scoreStorage.GetScores());
         }
 
         private void GameOnPlayerLost(object sender, EventArgs eventArgs)

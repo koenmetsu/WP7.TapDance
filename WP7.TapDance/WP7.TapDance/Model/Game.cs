@@ -12,7 +12,7 @@ namespace WP7.TapDance.Model
 
         public event EventHandler Stopped;
         public event EventHandler PlayerLost;
-        public event EventHandler PlayerWon;
+        public event EventHandler<GameWonEventArgs> PlayerWon;
         public event EventHandler<CountdownEventArgs> CountdownTick;
         public event EventHandler WaitForItStarted;
         public event EventHandler ClickFastStarted;
@@ -58,7 +58,8 @@ namespace WP7.TapDance.Model
         {
             if(clickFastWatch.IsRunning)
             {
-                PlayerWon(this, new EventArgs());
+                var score = new Score(clickFastWatch.Elapsed.TotalSeconds, DateTime.Now);
+                PlayerWon(this, new GameWonEventArgs(score));
             }
             else
             {

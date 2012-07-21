@@ -13,9 +13,13 @@ namespace WP7.TapDance.Model
         private const string scoresFilePath = "Scores.xml";
         private readonly XmlWriterSettings xmlWriterSettings;
 
+        private List<Score> tempList; 
+
         public ScoreStorage()
         {
             xmlWriterSettings = new XmlWriterSettings { Indent = true };
+            tempList = new List<Score>(){ new Score(0.300, DateTime.Now),
+            new Score(0.150, DateTime.Now)};
         }
 
 
@@ -24,6 +28,7 @@ namespace WP7.TapDance.Model
             List<Score> scores = GetScores().ToList();
             scores.Add(score);
             SaveScores(scores);
+            tempList.Add(score);
         }
 
         private void SaveScores(IEnumerable<Score> scores)
@@ -45,6 +50,7 @@ namespace WP7.TapDance.Model
 
         public IEnumerable<Score> GetScores()
         {
+            return tempList;
             var scores = new List<Score>();
 
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
