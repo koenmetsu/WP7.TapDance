@@ -1,4 +1,10 @@
+using System;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System.Windows.Media;
+using Microsoft.Phone.Reactive;
+using WP7.TapDance.Model;
 
 namespace WP7.TapDance.ViewModel
 {
@@ -29,6 +35,59 @@ namespace WP7.TapDance.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+            IGame game = null;
+
+
+            Button1Command = new RelayCommand(() => game.ButtonClicked(0), () => game.ButtonsCanBeClicked);
+            Button2Command = new RelayCommand(() => game.ButtonClicked(1), () => game.ButtonsCanBeClicked);
+            Button3Command = new RelayCommand(() => game.ButtonClicked(2), () => game.ButtonsCanBeClicked);
+            Button4Command = new RelayCommand(() => game.ButtonClicked(3), () => game.ButtonsCanBeClicked);
+            //RetryCommand = new RelayCommand(game.Retry, () => true);
+
+            Button1BackColor = new SolidColorBrush(Colors.Black);
+            Button2BackColor = new SolidColorBrush(Colors.Black);
+            Button3BackColor = new SolidColorBrush(Colors.Black);
+            Button4BackColor = new SolidColorBrush(Colors.Black);
+            RetryCommand = new RelayCommand(() => LightPattern(new int[] { 0, 2, 3, 1 }), () => true);
+        }
+
+        public RelayCommand Button1Command { get; set; }
+        public RelayCommand Button2Command { get; set; }
+        public RelayCommand Button3Command { get; set; }
+        public RelayCommand Button4Command { get; set; }
+        public RelayCommand RetryCommand { get; set; }
+
+        public SolidColorBrush Button1BackColor { get; set; }
+        public SolidColorBrush Button2BackColor { get; set; }
+        public SolidColorBrush Button3BackColor { get; set; }
+        public SolidColorBrush Button4BackColor { get; set; }
+
+        public void LightPattern(int[] buttons)
+        {
+            foreach (int button in buttons)
+            {
+                switch (button)
+                {
+                    case 0:
+                        LightButton(Button1BackColor);
+                        break;
+                    case 1:
+                        LightButton(Button2BackColor);
+                        break;
+                    case 2:
+                        LightButton(Button3BackColor);
+                        break;
+                    case 3:
+                        LightButton(Button4BackColor);
+                        break;
+                }
+            }
+        }
+
+        public void LightButton(SolidColorBrush brush)
+        {
+            brush.Color = Colors.Orange;
+            Scheduler.Dispatcher.Schedule(() => brush.Color = Colors.Black, TimeSpan.FromMilliseconds(700));
         }
     }
 }

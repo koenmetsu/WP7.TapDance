@@ -6,5 +6,8 @@ namespace WP7.TapDance.Model
     {
         int[] GetNewPattern();
         double GetSecondsPassed();
+
+        void ButtonClicked(int button);
+        bool ButtonsCanBeClicked { get; }
     }
 }
