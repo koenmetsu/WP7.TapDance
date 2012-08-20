@@ -65,7 +65,7 @@ namespace WP7.TapDance.Model
                 }
             }
 
-            return scores;
+            return scores.OrderBy(s => s.Seconds).Take(10);
         }
     }
 }

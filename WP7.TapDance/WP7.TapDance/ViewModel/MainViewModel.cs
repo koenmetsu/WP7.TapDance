@@ -104,10 +104,10 @@ namespace WP7.TapDance.ViewModel
             patternTimer.Tick += PatternTimerOnTick;
             patternTimer.Interval = buttonLightingTime;
 
-            Button1Command = new RelayCommand(() => game.ButtonClicked(0), () => game.ButtonsCanBeClicked);
-            Button2Command = new RelayCommand(() => game.ButtonClicked(1), () => game.ButtonsCanBeClicked);
-            Button3Command = new RelayCommand(() => game.ButtonClicked(2), () => game.ButtonsCanBeClicked);
-            Button4Command = new RelayCommand(() => game.ButtonClicked(3), () => game.ButtonsCanBeClicked);
+            Button1Command = new RelayCommand(() => game.ButtonClicked(0), () => true);
+            Button2Command = new RelayCommand(() => game.ButtonClicked(1), () => true);
+            Button3Command = new RelayCommand(() => game.ButtonClicked(2), () => true);
+            Button4Command = new RelayCommand(() => game.ButtonClicked(3), () => true);
             StartRetryCommand = new RelayCommand(() => StartNewPattern(game.GetNewPattern()), () => true);
 
             Button1BackColor = new SolidColorBrush(Colors.Black);

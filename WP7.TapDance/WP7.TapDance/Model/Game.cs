@@ -27,7 +27,7 @@ namespace WP7.TapDance.Model
         {
             tapDanceWatch = new Stopwatch();
             countdownTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.7) };
-            ButtonsCanBeClicked = true;
+            ButtonsCanBeClicked = false;
         }
 
         public void StartCountdown()
@@ -42,7 +42,6 @@ namespace WP7.TapDance.Model
         {
             if(countdown == 0)
             {
-                ButtonsCanBeClicked = true;
                 countdownTimer.Stop();
                 WaitForItStarted(this, new EventArgs());
                 Scheduler.Dispatcher.Schedule(StartTimer, TimeSpan.FromSeconds(new Random().Next(2, 5)));
@@ -104,6 +103,8 @@ namespace WP7.TapDance.Model
 
         public void ButtonClicked(int button)
         {
+            if (!ButtonsCanBeClicked) { return; }
+
             if(tapDanceWatch.IsRunning)
             {
                 tappedButtons.Add(button);
