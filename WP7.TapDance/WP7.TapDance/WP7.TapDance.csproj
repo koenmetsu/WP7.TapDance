@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Model\CountdownEventArgs.cs" />
     <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\GameState.cs" />
     <Compile Include="Model\GameWonEventArgs.cs" />
     <Compile Include="Model\IGame.cs" />
     <Compile Include="Model\PatternGenerator.cs" />

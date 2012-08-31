@@ -21,7 +21,7 @@
       </Style>
     </Grid.Resources>
     <!--Pivot Control-->
-    <controls:Pivot Title="TAPDANCE">
+        <controls:Pivot Title="BLITZTAP PATTERNS">
       <!--Pivot item one-->
       <controls:PivotItem Header="play">
         <Grid>

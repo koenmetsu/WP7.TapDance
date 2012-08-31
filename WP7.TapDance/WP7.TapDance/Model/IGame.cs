@@ -10,14 +10,14 @@ namespace WP7.TapDance.Model
         event EventHandler<CountdownEventArgs> CountdownTick;
         event EventHandler WaitForItStarted;
         event EventHandler TapDanceStarted;
+        event EventHandler ButtonsCanBeClickedChanged;
         
         int[] GetNewPattern();
         void StartCountdown();
         double GetSecondsPassed();
-
         void ButtonClicked(int button);
-        bool ButtonsCanBeClicked { get; }
 
-
+        bool ButtonsCanBeClicked { get; set; }
+        GameState GameState { get; }
     }
 }
